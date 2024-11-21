@@ -9,7 +9,8 @@ color: #daedde;
 `
 
 export const ProductOne = styled.div`
-background-color: #000;  
+  background: ${(props) => props.isBestDeal  ? '#236d23ad' : 'transparent'};   
+
 display: flex ;
 justify-content: center;
 text-align  : center ;
@@ -18,7 +19,7 @@ border-radius: 8px;
 
 
 export const ProductTwo = styled.div `
-background-color: #56555a; 
+  background: ${(props) => props.isBestDeal  ? '#236d23ad' : 'transparent'};   
 display: flex ;
 justify-content: center;
 border-radius: 8px;

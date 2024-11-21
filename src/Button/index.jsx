@@ -1,7 +1,7 @@
 import {Button as StyledButton} from "./styles.jsx";
 
 
-export function Button({label, onClick}) {
+const Button = ({label, onClick}) => {
 return (
 
 <StyledButton onClick = {onClick}>
@@ -11,9 +11,7 @@ return (
 )
 
 
-
-
 }
 
 
-export default Button();
+export default Button;
