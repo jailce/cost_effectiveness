@@ -107,7 +107,7 @@ export function InputAndCalculation() {
       <ProductOne isBestDeal={state.isBestDealOne}>
         <label>
         <GiSodaCan />
-        <TbBottleFilled />
+   
           <Input
             placeholder=""
             value={state.volumeA}
@@ -134,7 +134,7 @@ export function InputAndCalculation() {
       <ProductTwo isBestDeal={state.isBestDealTwo}>
         <label>
         <GiSodaCan />
-        <TbBottleFilled />
+      
           <Input
             placeholder="0"
             value={state.volumeB}
