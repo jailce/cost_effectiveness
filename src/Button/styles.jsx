@@ -1,10 +1,9 @@
-import styled from "styled-components";
-
+import styled, {css} from 'styled-components';
 
 
 export const Button = styled.button `
-  max-width: 160px;
-  width: 100%;
+  min-width: 120px;
+  width: auto;
   margin: 10px;
   font-weight: 100px;
   padding: 10px 20px;
@@ -19,8 +18,20 @@ export const Button = styled.button `
   background: #2e2d6d;   
   cursor: pointer;
 
+
+
   &:hover{
     background: #141430; 
     transition  :  all 200ms;
+  }
+
+  ${({variant}) => variant === "secondary" && css` 
+
+  background: transparent;   
+  border: 1px solid #2e2d6d;
+  
+  `
+  
+  
   }
 `

@@ -1,112 +1,164 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { GiSodaCan } from "react-icons/gi";
 import { TbBottleFilled } from "react-icons/tb";
-import {Container, Input, ResultWrapper, ProductOne, ButtonWrapper, ProductTwo} from "./styles.jsx";
-import Button from './../Button';
-
-
-
+import {
+  Container,
+  Title,
+  Input,
+  ResultWrapper,
+  ProductOne,
+  ButtonWrapper,
+  ProductTwo,
+} from "./styles.jsx";
+import Button from "./../Button";
 
 export function InputAndCalculation() {
+  const [state, setState] = useState({
+    priceA: "0",
+    priceB: "0",
+    volumeA: "0",
+    volumeB: "0",
+    result: "",
+    isBestDealOne: false,
+    isBestDealTwo: false,
+  });
+  // const worthA = state.priceA / state.volumeA ;
+  // const worthB = state.priceB / state.volumeB ;
+  const worthA = parseFloat(state.priceA) / parseFloat(state.volumeA);
+  const worthB = parseFloat(state.priceB) / parseFloat(state.volumeB);
+  console.log(worthA, state.volumeA, state.priceA, worthB);
 
-const [priceA, setPriceA] = useState("0");
-const [priceB, setPriceB] = useState("0");
-const [volumeA, setVolumeA] = useState("ml");
-const [volumeB, setVolumeB] = useState("ml");
-const [result, setResult] = useState("");
-const [isBestDealOne, setIsBestDealOne] = useState(false);
-const [isBestDealTwo, setIsBestDealTwo] = useState(false);
-
-const worthA = priceA / volumeA;
-const worthB = priceB / volumeB;
-console.log(worthA, worthB)
+  const handleChange = (field, value) => {
+    setState((prevState) => ({
+      ...prevState,
+      [field]: value, // Atualiza apenas o campo necessário
+    }));
+  };
 
   const handleClick = () => {
-    if (worthA > worthB ) {
-      setResult( <span>compre o produto de   {volumeB}  ml por R$ {priceB} </span> );
-      setIsBestDealOne(false);  
-      setIsBestDealTwo(true);  
+    if (worthA > worthB) {
+      setState((prevState) => ({
+        ...prevState,
+        result: (
+          <span>
+            compre o produto de {state.volumeB} ml por R$ {state.priceB}
+          </span>
+        ),
+        isBestDealOne: false,
+        isBestDealTwo: true,
+      }));
     } else if (worthA < worthB) {
-     setResult("compre o A");
-     setIsBestDealOne(true);  
-     setIsBestDealTwo(false); 
+      setState((prevState) => ({
+        ...prevState,
+        result: (
+          <span>
+            compre o produto de {state.volumeA} ml por R$ {state.priceA}
+          </span>
+        ),
+        IsBestDealOne: true,
+        IsBestDealTwo: false,
+      }));
     } else if (worthA === worthB) {
-     setResult("Os produtos tem o mesmo valor");
-     setIsBestDealOne(false);  
-     setIsBestDealTwo(false); 
+      setState((prevState) => ({
+        ...prevState,
+        result: <span>"Os produtos são equivalentes"</span>,
+
+        IsBestDealOne: false,
+        IsBestDealTwo: false,
+      }));
     } else {
-       setResult(" ");
-    }
+      setState((prevState) => ({
+        ...prevState,
+        result: <span>"0"</span>,
+
+        IsBestDealOne: false,
+        IsBestDealTwo: false,
+      }));
+    }  
+  };
+  const handleFocus = (field) => {
+    setState((prevState) => ({
+      ...prevState,
+      [field]: "", // Limpa o campo específico
+    }));
+  };
+  const handleOnClear = () => {
+    setState({
+      priceA: "0",
+      priceB: "0",
+      volumeA: "0",
+      volumeB: "0",
+      result: "",
+      isBestDealOne: false,
+      isBestDealTwo: false,
+    });
   };
 
-  const handleOnClear = () => {
-    setPriceA('0')
- setPriceB('0')
-setVolumeA('ml')
-setVolumeB('ml')
-  };
+  // const Reais = new Intl.NumberFormat("pt-BR", {
+  //   style: "currency",
+  //   currency: "BRL",
+  // });
 
   return (
     <Container>
-      <h1>Qual o produto é mais barato?</h1>
-      <ResultWrapper>{result}</ResultWrapper>
-      <ProductOne isBestDeal={isBestDealOne}>
-      
+      <Title>Qual o produto é mais barato?</Title>
+
+      <ResultWrapper>{state.result}</ResultWrapper>
+      <ProductOne isBestDeal={state.isBestDealOne}>
         <label>
-        
-    
+        <GiSodaCan />
+        <TbBottleFilled />
           <Input
-           placeholder="ml"
-            value={volumeA}
-            onChange={(x) => setVolumeA(x.target.value)}
-            type="number" 
+            placeholder=""
+            value={state.volumeA}
+            onChange={(e) => handleChange("volumeA", e.target.value)}
+            onFocus={(e) => handleFocus("volumeA" , e.target.value)}
+            type="number"
           />
-          <GiSodaCan />
-          <TbBottleFilled />
+          
+          <em>ml</em>
         </label>
 
         <label>
-        R$
+          R$
           <Input
-            placeholder="0,00"
-            value={priceA}
-            onChange={(x) => setPriceA(x.target.value)}
+            placeholder="0"
+            value={state.priceA}
+            onChange={(e) => handleChange("priceA", e.target.value)}
+            onFocus={(e) => handleFocus("priceA", e.target.value)}
             type="number"
           />
         </label>
       </ProductOne>
 
-      <ProductTwo isBestDeal={isBestDealTwo}>
-     
+      <ProductTwo isBestDeal={state.isBestDealTwo}>
         <label>
-       
+        <GiSodaCan />
+        <TbBottleFilled />
           <Input
-            placeholder="ml"
-            
-            value={volumeB}
-            onChange={(x) => setVolumeB(x.target.value)}
+            placeholder="0"
+            value={state.volumeB}
+            onChange={(e) => handleChange("volumeB", e.target.value)}
+            onFocus={(e) => handleChange("volumeB", e.target.value)}
             type="number"
           />
-          <GiSodaCan />
-          <TbBottleFilled />
+     <em>ml</em>
         </label>
         <label>
           R$
           <Input
-          
             placeholder="0,00"
-            value={priceB}
-            onChange={(x) => setPriceB(x.target.value)}
+            value={state.priceB}
+            onChange={(e) => handleChange("priceB", e.target.value)}
+            onFocus={(e) => handleFocus("priceB", e.target.value)}
             type="number"
           />
         </label>
-    
       </ProductTwo>
 
-  
       <ButtonWrapper>
-      <Button onClick={handleClick} label = "Confirmar"/>  
-      <Button onClick={handleOnClear} label = "Limpar"/>  
+        <Button onClick={handleOnClear} variant="secondary" label="Limpar" />
+        <Button onClick={handleClick} label="Confirmar" />
       </ButtonWrapper>
     </Container>
   );
