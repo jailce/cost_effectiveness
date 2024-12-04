@@ -26,7 +26,7 @@ border-radius: 8px;
 `
 
 export const Input = styled.input `
-  max-width: 60px;
+  max-width: 80px;
   font-family: "Poppins", sans-serif !important;
   margin: 10px;
   height: 40px;

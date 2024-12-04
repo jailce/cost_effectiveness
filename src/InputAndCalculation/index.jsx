@@ -14,10 +14,10 @@ import Button from "./../Button";
 
 export function InputAndCalculation() {
   const [state, setState] = useState({
-    priceA: "0",
-    priceB: "0",
-    volumeA: "0",
-    volumeB: "0",
+    priceA: "",
+    priceB: "",
+    volumeA: "",
+    volumeB: "",
     result: "",
     isBestDealOne: false,
     isBestDealTwo: false,
@@ -31,7 +31,7 @@ export function InputAndCalculation() {
   const handleChange = (field, value) => {
     setState((prevState) => ({
       ...prevState,
-      [field]: value, // Atualiza apenas o campo necessário
+      [field]: field.startsWith("price") ? formatReais(value) : value, // Atualiza apenas o campo necessário
     }));
   };
 
@@ -79,25 +79,33 @@ export function InputAndCalculation() {
   const handleFocus = (field) => {
     setState((prevState) => ({
       ...prevState,
-      [field]: "", // Limpa o campo específico
+      [field]: "", 
     }));
   };
   const handleOnClear = () => {
     setState({
-      priceA: "0",
-      priceB: "0",
-      volumeA: "0",
-      volumeB: "0",
+      priceA: "",
+      priceB: "",
+      volumeA: "",
+      volumeB: "",
       result: "",
       isBestDealOne: false,
       isBestDealTwo: false,
     });
   };
 
-  // const Reais = new Intl.NumberFormat("pt-BR", {
-  //   style: "currency",
-  //   currency: "BRL",
-  // });
+
+
+  const formatReais = (value) => {
+    const numericValue = value.replace(/\D/g, "");
+
+    const formattedValue = (numericValue / 100).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+
+    return formattedValue;
+  };
 
   return (
     <Container>
@@ -122,11 +130,13 @@ export function InputAndCalculation() {
         <label>
           R$
           <Input
-            placeholder="0"
+            placeholder=""
             value={state.priceA}
+       
+            
             onChange={(e) => handleChange("priceA", e.target.value)}
             onFocus={(e) => handleFocus("priceA", e.target.value)}
-            type="number"
+            type="text" 
           />
         </label>
       </ProductOne>
@@ -136,7 +146,7 @@ export function InputAndCalculation() {
         <GiSodaCan />
       
           <Input
-            placeholder="0"
+            placeholder=""
             value={state.volumeB}
             onChange={(e) => handleChange("volumeB", e.target.value)}
             onFocus={(e) => handleChange("volumeB", e.target.value)}
@@ -147,11 +157,11 @@ export function InputAndCalculation() {
         <label>
           R$
           <Input
-            placeholder="0,00"
+            placeholder=""
             value={state.priceB}
             onChange={(e) => handleChange("priceB", e.target.value)}
             onFocus={(e) => handleFocus("priceB", e.target.value)}
-            type="number"
+            type="text"
           />
         </label>
       </ProductTwo>
