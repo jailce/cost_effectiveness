@@ -24,18 +24,32 @@ export function InputAndCalculation() {
   });
   // const worthA = state.priceA / state.volumeA ;
   // const worthB = state.priceB / state.volumeB ;
-  const worthA = parseFloat(state.priceA) / parseFloat(state.volumeA);
-  const worthB = parseFloat(state.priceB) / parseFloat(state.volumeB);
-  console.log(worthA, state.volumeA, state.priceA, worthB);
+  const worthA = state.priceA && state.volumeA ? parseFloat(state.priceA) / parseFloat(state.volumeA) : 0;
+  const worthB = state.priceB && state.volumeB ? parseFloat(state.priceB) / parseFloat(state.volumeB) : 0;
+  console.log(   state.priceA, state.priceB);
 
+
+  const formatReais = (value) => {
+    const rawValue = value.replace(/\D/g, "");
+    const numericValue = (parseInt(rawValue, 10) / 100).toFixed(2);
+    return numericValue.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
   const handleChange = (field, value) => {
+ 
+
     setState((prevState) => ({
       ...prevState,
-      [field]: field.startsWith("price") ? formatReais(value) : value, // Atualiza apenas o campo necessário
+      [field]: value ,
     }));
   };
 
-  const handleClick = () => {
+  const getFormattedValue = (value) => {
+    // Retorna o valor formatado para exibição no input
+    return formatReais(value);
+  };
+
+
+  const handleCalc = () => {
     if (worthA > worthB) {
       setState((prevState) => ({
         ...prevState,
@@ -79,13 +93,13 @@ export function InputAndCalculation() {
   const handleFocus = (field) => {
     setState((prevState) => ({
       ...prevState,
-      [field]: "", 
+      [field]: "0", 
     }));
   };
   const handleOnClear = () => {
     setState({
-      priceA: "",
-      priceB: "",
+      priceA: "0",
+      priceB: "0",
       volumeA: "",
       volumeB: "",
       result: "",
@@ -96,16 +110,7 @@ export function InputAndCalculation() {
 
 
 
-  const formatReais = (value) => {
-    const numericValue = value.replace(/\D/g, "");
 
-    const formattedValue = (numericValue / 100).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-
-    return formattedValue;
-  };
 
   return (
     <Container>
@@ -117,7 +122,7 @@ export function InputAndCalculation() {
         <GiSodaCan />
    
           <Input
-            placeholder=""
+            placeholder="0"
             value={state.volumeA}
             onChange={(e) => handleChange("volumeA", e.target.value)}
             onFocus={(e) => handleFocus("volumeA" , e.target.value)}
@@ -130,8 +135,8 @@ export function InputAndCalculation() {
         <label>
           R$
           <Input
-            placeholder=""
-            value={state.priceA}
+            placeholder="0"
+            value={getFormattedValue(state.priceA)}
        
             
             onChange={(e) => handleChange("priceA", e.target.value)}
@@ -158,7 +163,7 @@ export function InputAndCalculation() {
           R$
           <Input
             placeholder=""
-            value={state.priceB}
+            value={getFormattedValue(state.priceB)}
             onChange={(e) => handleChange("priceB", e.target.value)}
             onFocus={(e) => handleFocus("priceB", e.target.value)}
             type="text"
@@ -168,7 +173,7 @@ export function InputAndCalculation() {
 
       <ButtonWrapper>
         <Button onClick={handleOnClear} variant="secondary" label="Limpar" />
-        <Button onClick={handleClick} label="Confirmar" />
+        <Button onClick={handleCalc} label="Confirmar" />
       </ButtonWrapper>
     </Container>
   );
