@@ -11,7 +11,7 @@ export default function App() {
   const [consumerTab, setConsumerTab] = useState('hibrido'); // 'hibrido' ou 'duelo'
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans sm:pb-10 flex flex-col">
+    <div className="min-h-screen bg-amber-50 text-gray-800 font-sans sm:pb-10 flex flex-col">
       
       {/* HEADER / TOPBAR */}
       <header className="bg-white border-b sticky top-0 z-30 shadow-sm">
@@ -25,7 +25,7 @@ export default function App() {
             
             <button 
               onClick={() => setIsAlcoholMode(!isAlcoholMode)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-full text-xs font-bold transition-colors border ${isAlcoholMode ? 'bg-blue-600 text-white border-blue-600' : 'bg-gray-100 text-gray-600 border-gray-200'}`}
+              className={`flex items-center gap-2 px-3 py-2 rounded-full text-xs font-bold transition-colors border ${isAlcoholMode ? 'bg-amber-300 text-black border-black' : 'bg-gray-100 text-gray-600 border-gray-200'}`}
             >
               <Wine size={14} />
               {isAlcoholMode ? 'Modo Álcool: ON' : 'Modo Álcool: OFF'}
@@ -54,13 +54,13 @@ export default function App() {
           <div className="flex bg-gray-200/60 p-1 rounded-xl mb-6 animate-fadeIn">
             <button
               onClick={() => setConsumerTab('hibrido')}
-              className={`flex-1 flex items-center justify-center gap-2 text-xs font-bold py-2 rounded-lg transition-all ${consumerTab === 'hibrido' ? 'bg-white shadow-sm text-blue-700' : 'text-gray-500 hover:text-gray-700'}`}
+              className={`flex-1 flex items-center justify-center gap-2 text-xs font-bold py-2 rounded-lg transition-all ${consumerTab === 'hibrido' ? 'bg-amber-300 shadow-sm text-black' : 'text-gray-500 hover:text-gray-700'}`}
             >
               <Calculator size={14} /> Híbrido
             </button>
             <button
               onClick={() => setConsumerTab('duelo')}
-              className={`flex-1 flex items-center justify-center gap-2 text-xs font-bold py-2 rounded-lg transition-all ${consumerTab === 'duelo' ? 'bg-white shadow-sm text-blue-700' : 'text-gray-500 hover:text-gray-700'}`}
+              className={`flex-1 flex items-center justify-center gap-2 text-xs font-bold py-2 rounded-lg transition-all ${consumerTab === 'duelo' ? 'bg-amber-300 shadow-sm text-black' : 'text-gray-500 hover:text-gray-700'}`}
             >
               <Swords size={14} /> Duelo Rápido
             </button>
