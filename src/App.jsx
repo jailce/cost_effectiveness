@@ -11,7 +11,7 @@ export default function App() {
   const [consumerTab, setConsumerTab] = useState('hibrido'); // 'hibrido' ou 'duelo'
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans sm:pb-10">
+    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans sm:pb-10 flex flex-col">
       
       {/* HEADER / TOPBAR */}
       <header className="bg-white border-b sticky top-0 z-30 shadow-sm">
@@ -19,7 +19,7 @@ export default function App() {
           {/* Título e Toggle de Álcool */}
           <div className="p-4 flex justify-between items-center">
             <div>
-              <h1 className="text-xl font-black text-gray-900 leading-tight">Bebida Justa</h1>
+              <h1 className="text-xl font-black text-gray-900 leading-tight">Bebida Barata</h1>
               <p className="text-xs text-gray-500 font-medium">Calculadora de Custo-Benefício</p>
             </div>
             
@@ -35,7 +35,7 @@ export default function App() {
           {/* Abas de Navegação (Views Principais) */}
           <div className="flex px-4 pb-0 no-scrollbar gap-6 border-t border-gray-100 pt-2">
             <TabButton active={mainTab === 'consumidor'} onClick={() => setMainTab('consumidor')} icon={ShoppingCart} label="Para Consumidor" />
-            <TabButton active={mainTab === 'vendedor'} onClick={() => setMainTab('vendedor')} icon={Store} label="Para Atacado/Vendedor" />
+            <TabButton active={mainTab === 'vendedor'} onClick={() => setMainTab('vendedor')} icon={Store} label="Para Vendedor" />
           </div>
         </div>
       </header>
@@ -74,6 +74,12 @@ export default function App() {
         
       </main>
 
+      {/* RODAPÉ / DISCLAIMER */}
+      <footer className="w-full text-center py-6 mt-auto">
+        <p className="text-xs text-gray-400 font-medium tracking-wide">
+          &copy; {new Date().getFullYear()} Desenvolvido por <span className="font-bold text-gray-500">Jailce Fernanda</span>. Todos os direitos reservados.
+        </p>
+      </footer>
     </div>
   );
 }
