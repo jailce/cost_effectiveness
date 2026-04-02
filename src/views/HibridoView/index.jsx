@@ -100,9 +100,6 @@ const HibridoView = ({ isAlcoholMode, globalItems, setGlobalItems }) => {
                 {isWinner && <WinnerBadge isAlcoholMode={isAlcoholMode} />}
                 
                 <div className="flex flex-wrap gap-2 mb-2">
-                   <div className="w-16">
-                     <InputField label="Qtd" value={item.qty} onChange={(e) => handleFreeItemChange(index, 'qty', e.target.value)} placeholder="1" />
-                   </div>
                    <div className="flex-1">
                      <InputField label="Vol (ml)" value={item.vol} onChange={(e) => handleFreeItemChange(index, 'vol', e.target.value)} placeholder="ex: 350" />
                    </div>
