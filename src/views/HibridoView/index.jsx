@@ -61,7 +61,7 @@ const HibridoView = ({ isAlcoholMode, globalItems, setGlobalItems }) => {
             const isWinner = minMetric !== null && myMetric === minMetric;
 
             return (
-              <div key={preset.id} className={`relative p-3 rounded-xl border-2 transition-all ${isWinner ? 'border-green-500 bg-green-50' : 'border-gray-100 bg-white shadow-sm'}`}>
+              <div key={preset.id} className={`relative p-3 rounded-xl border-2 transition-all ${isWinner ? 'border-green-500 bg-green-50' : 'border-amber-50 bg-white shadow-sm'}`}>
                 {isWinner && <WinnerBadge isAlcoholMode={isAlcoholMode} />}
                 <div className="flex items-center gap-2 mb-2 text-gray-700">
                   <preset.icon size={16} className={isWinner ? 'text-green-600' : 'text-gray-400'} />
@@ -96,7 +96,7 @@ const HibridoView = ({ isAlcoholMode, globalItems, setGlobalItems }) => {
              const isLastAndEmpty = index === freeItems.length - 1 && !item.price && !item.vol;
 
              return (
-              <div key={item.id} className={`relative p-3 rounded-xl border-2 transition-all ${isWinner ? 'border-green-500 bg-green-50' : 'border-gray-100 bg-white shadow-sm'} ${isLastAndEmpty ? 'opacity-50' : ''}`}>
+              <div key={item.id} className={`relative p-3 rounded-xl border-2 transition-all ${isWinner ? 'border-green-500 bg-green-50' : 'border-amber-50 bg-white shadow-sm'} ${isLastAndEmpty ? 'opacity-50' : ''}`}>
                 {isWinner && <WinnerBadge isAlcoholMode={isAlcoholMode} />}
                 
                 <div className="flex flex-wrap gap-2 mb-2">

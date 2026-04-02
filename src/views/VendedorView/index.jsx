@@ -60,7 +60,7 @@ const VendedorView = ({ isAlcoholMode }) => {
         const isLastAndEmpty = index === items.length - 1 && !item.price && !item.unitsPerPack;
 
         return (
-          <div key={item.id} className={`relative p-4 rounded-xl border-2 transition-all ${isWinner ? 'border-green-500 bg-green-50 shadow-md scale-[1.02]' : 'border-gray-200 bg-white shadow-sm'} ${isLastAndEmpty ? 'opacity-60' : ''}`}>
+          <div key={item.id} className={`relative p-4 rounded-xl border-2 transition-all ${isWinner ? 'border-green-500 bg-green-50 shadow-md scale-[1.02]' : 'border-amber-50 bg-white shadow-sm'} ${isLastAndEmpty ? 'opacity-60' : ''}`}>
             {isWinner && <WinnerBadge isAlcoholMode={isAlcoholMode} />}
             
             <div className="flex items-center gap-2 mb-3">

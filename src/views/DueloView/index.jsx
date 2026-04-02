@@ -33,7 +33,7 @@ const DueloView = ({ isAlcoholMode }) => {
         return (
           <div key={item.id} className="relative">
             {isWinner && <WinnerBadge isAlcoholMode={isAlcoholMode} />}
-            <div className={`p-5 rounded-2xl border-2 transition-all shadow-md ${isWinner ? 'border-green-500 bg-green-50 scale-105 z-10' : isLoser ? 'border-red-200 bg-red-50 opacity-80' : 'border-gray-200 bg-white'}`}>
+            <div className={`p-5 rounded-2xl border-2 transition-all shadow-md ${isWinner ? 'border-green-500 bg-green-50 scale-105 z-10' : isLoser ? 'border-red-200 bg-red-50 opacity-80' : 'border-amber-50 bg-white'}`}>
               
               <h3 className={`text-lg font-black mb-4 flex items-center gap-2 ${isWinner ? 'text-green-700' : 'text-gray-700'}`}>
                 {item.name}

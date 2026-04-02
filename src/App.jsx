@@ -11,7 +11,7 @@ export default function App() {
   const [consumerTab, setConsumerTab] = useState('hibrido'); // 'hibrido' ou 'duelo'
 
   return (
-    <div className="min-h-screen bg-amber-50 text-gray-800 font-sans sm:pb-10 flex flex-col">
+    <div className="min-h-screen bg-[#FDFBF6] text-gray-800 font-sans sm:pb-10 flex flex-col">
       
       {/* HEADER / TOPBAR */}
       <header className="bg-white border-b sticky top-0 z-30 shadow-sm">
